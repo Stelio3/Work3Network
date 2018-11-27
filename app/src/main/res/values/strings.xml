@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">FortniteUsers</string>
+    <string name="btnText">Find</string>
+
+    <string-array name="platformsItems">
+        <item>pc</item>
+        <item>psn</item>
+        <item>xb1</item>
+    </string-array>
+</resources>
