@@ -1,5 +1,6 @@
 package a.benri.work3_network.ForniteTracker;
 
+//modelo 4º fila
 public class StatsSonData {
     private String label;
     private String rank;

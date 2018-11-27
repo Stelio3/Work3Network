@@ -14,6 +14,7 @@ import io.reactivex.annotations.NonNull;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ForniteViewHolder>{
     private List<StatsSonData> dataStats;
 
+    //Constructor del adapter al que se le pasa la lista de datos desde el main
     public MyAdapter(List<StatsSonData> dataObject) {
         this.dataStats = dataObject;
     }
@@ -32,7 +33,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ForniteViewHolder>
         forniteViewHolder.txtForniteTrackerTitle.setText(item.getLabel());
         forniteViewHolder.txtForniteTrackerValue.setText(item.getDisplayValue());
         forniteViewHolder.txtForniteTrackerRank.setText(item.getRank());
-
     }
 
     @Override

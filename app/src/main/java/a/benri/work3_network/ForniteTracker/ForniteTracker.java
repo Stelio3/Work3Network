@@ -1,5 +1,6 @@
 package a.benri.work3_network.ForniteTracker;
 
+//modelo 1º fila
 public class ForniteTracker {
     private String accountId;
     private String platformId;

@@ -8,6 +8,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.Path;
 
+//Servicio
 public interface ForniteTrackerApi {
     @Headers("TRN-Api-Key: 1b947de5-1e90-4cd5-902a-d5e9e123d9b2")
     @GET("v1/profile/{platform}/{epic-nickname}")

@@ -1,5 +1,6 @@
 package a.benri.work3_network.ForniteTracker;
 
+//modelo 3º fila
 public class StatsSon {
     private StatsSonData score;
     private StatsSonData scorePerMatch;

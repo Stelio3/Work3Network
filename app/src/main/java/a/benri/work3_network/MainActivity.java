@@ -20,7 +20,7 @@ import a.benri.work3_network.ForniteTracker.StatsSonData;
 public class MainActivity extends AppCompatActivity {
 
     private EditText etNickName;
-    private Spinner spinnerPlataform;
+    private Spinner spinnerPlatform;
     private MyAdapter adapter;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
@@ -35,16 +35,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         etNickName = findViewById(R.id.etforniteNickName);
-        spinnerPlataform = findViewById(R.id.spinner_platform);
+        spinnerPlatform = findViewById(R.id.spinner_platform);
         btnFind = findViewById(R.id.buttonFind);
 
         changeData("","");
 
+        //llamada al método del onclicklistener
         clickbtnFind();
     }
 
+    //Datos de las listas
     private void changeData(String mconsole,String nickName){
         forniteViewModel = ViewModelProviders.of(this).get(ForniteTrackerViewModel.class);
+        //Observador que escucha del View Model para meter los datos en el recyclerView
         forniteViewModel.dataForniteTracker.observe(this, StatsSonData -> {
             if(StatsSonData!=null){
                 Log.d("ServiceFornite","Changes: "+StatsSonData);
@@ -64,7 +67,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void clickbtnFind(){
         btnFind.setOnClickListener(v -> {
-            mconsole = spinnerPlataform.getSelectedItem().toString();
+            //Obtiene el dato que aparece en el spinner y el editText y se los pasa al view model para meterlos en la lista
+            mconsole = spinnerPlatform.getSelectedItem().toString();
             epicNickName = etNickName.getText().toString();
             Log.d("Change","platform "+mconsole+" epic_name "+epicNickName);
             forniteViewModel.getData(mconsole, epicNickName);

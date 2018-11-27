@@ -10,7 +10,7 @@
 
     <EditText
         android:id="@+id/etforniteNickName"
-        android:layout_width="235dp"
+        android:layout_width="258dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -27,7 +27,7 @@
 
     <Spinner
         android:id="@+id/spinner_platform"
-        android:layout_width="92dp"
+        android:layout_width="75dp"
         android:layout_height="46dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -44,7 +44,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycleview_fornite"
         android:layout_width="334dp"
-        android:layout_height="382dp"
+        android:layout_height="333dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -53,7 +53,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.787">
+        app:layout_constraintVertical_bias="0.592">
 
     </android.support.v7.widget.RecyclerView>
 

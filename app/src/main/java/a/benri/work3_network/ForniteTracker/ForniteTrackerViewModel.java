@@ -31,7 +31,7 @@ public class ForniteTrackerViewModel extends ViewModel {
 
                     @Override
                     public void onNext(ForniteTracker forniteObject) {
-                        //liveData.postValue(forniteObjects);
+                        //Si la información no es nula meto los datos en la lista
                         if(forniteObject!=null) {
                             dataList.clear();
                             StatsSon data = forniteObject.getStats().getP2();
@@ -45,6 +45,7 @@ public class ForniteTrackerViewModel extends ViewModel {
 
                     @Override
                     public void onError(Throwable e) {
+                        //Creo el log para saber que está fallando en caso de no funcionar correctamente
                         Log.d("errorService","err: "+e.getLocalizedMessage());
                     }
 
