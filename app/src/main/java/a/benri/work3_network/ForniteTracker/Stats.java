@@ -4,11 +4,8 @@ package a.benri.work3_network.ForniteTracker;
 public class Stats {
     private StatsSon p2;
 
+    //El siguiente nivel del arbol después del stats que voy a usar es el p2
     public StatsSon getP2() {
         return p2;
-    }
-
-    public void setP2(StatsSon p2) {
-        this.p2 = p2;
     }
 }

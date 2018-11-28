@@ -12,25 +12,24 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class ForniteTrackerViewModel extends ViewModel {
-    private ForniteTrackerRepository forniteTrackerRepository = ForniteTrackerRepository.getInstance();
-    public MutableLiveData<List<StatsSonData>> dataForniteTracker = new MutableLiveData<>();
+public class FortniteTrackerViewModel extends ViewModel {
+    private FortniteTrackerRepository fortniteTrackerRepository = FortniteTrackerRepository.getInstance();
+    public MutableLiveData<List<StatsSonData>> mldataForniteTracker = new MutableLiveData<>();
     public List<StatsSonData> dataList = new ArrayList<>();
 
 
     public void getData(String platform, String epic_nickname){
 
-        forniteTrackerRepository.getInfoFornite(platform,epic_nickname)
+        fortniteTrackerRepository.getFortniteUser(platform,epic_nickname)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<ForniteTracker>() {
+                .subscribe(new Observer<FortniteTracker>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
                     }
 
                     @Override
-                    public void onNext(ForniteTracker forniteObject) {
+                    public void onNext(FortniteTracker forniteObject) {
                         //Si la información no es nula meto los datos en la lista
                         if(forniteObject!=null) {
                             dataList.clear();
@@ -39,7 +38,7 @@ public class ForniteTrackerViewModel extends ViewModel {
                             dataList.add(data.getScorePerMatch());
                             dataList.add(data.getMatches());
                             dataList.add(data.getKills());
-                            dataForniteTracker.postValue(dataList);
+                            mldataForniteTracker.postValue(dataList);
                         }
                     }
 
@@ -51,7 +50,6 @@ public class ForniteTrackerViewModel extends ViewModel {
 
                     @Override
                     public void onComplete() {
-
                     }
                 });
     }

@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="btnColor">#0e3b8f</color>
-    <color name="btnColorText">#f2f5f3</color>
+    <color name="btnColorText">#f9fafa</color>
     <color name="background">#a5e1da</color>
+    <color name="textColor">#3b95b3</color>
+    <color name="textColor2">#cf3f3f</color>
 </resources>

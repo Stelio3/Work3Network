@@ -12,9 +12,7 @@ import android.widget.Spinner;
 
 import java.util.List;
 
-import a.benri.work3_network.ForniteTracker.ForniteTracker;
-import a.benri.work3_network.ForniteTracker.ForniteTrackerViewModel;
-import a.benri.work3_network.ForniteTracker.StatsSon;
+import a.benri.work3_network.ForniteTracker.FortniteTrackerViewModel;
 import a.benri.work3_network.ForniteTracker.StatsSonData;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,55 +23,45 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private FloatingActionButton btnFind;
-    private ForniteTrackerViewModel forniteViewModel;
-    private String mconsole;
-    private String epicNickName;
+    private FortniteTrackerViewModel forniteViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        etNickName = findViewById(R.id.etforniteNickName);
-        spinnerPlatform = findViewById(R.id.spinner_platform);
-        btnFind = findViewById(R.id.buttonFind);
-
-        changeData("","");
-
+        findViewById();
+        resetDataUser();
         //llamada al método del onclicklistener
         clickbtnFind();
     }
 
-    //Datos de las listas
-    private void changeData(String mconsole,String nickName){
-        forniteViewModel = ViewModelProviders.of(this).get(ForniteTrackerViewModel.class);
-        //Observador que escucha del View Model para meter los datos en el recyclerView
-        forniteViewModel.dataForniteTracker.observe(this, StatsSonData -> {
-            if(StatsSonData!=null){
-                Log.d("ServiceFornite","Changes: "+StatsSonData);
-                generateForniteList(StatsSonData);
-            }
-        });
-        forniteViewModel.getData(mconsole, nickName);
+    public void findViewById(){
+        //findView de los valores que voy a meter en mi cardView
+        etNickName = findViewById(R.id.etforniteNickName);
+        spinnerPlatform = findViewById(R.id.spinner_platform);
+        btnFind = findViewById(R.id.buttonFind);
     }
-
-    private void generateForniteList(List<StatsSonData> listForniteTracker) {
-        recyclerView = findViewById(R.id.recycleview_fornite);
-        adapter = new MyAdapter(listForniteTracker);
-        layoutManager = new GridLayoutManager(this, 2);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
-    }
-
+    //Método del onclick del boton
     private void clickbtnFind(){
         btnFind.setOnClickListener(v -> {
             //Obtiene el dato que aparece en el spinner y el editText y se los pasa al view model para meterlos en la lista
-            mconsole = spinnerPlatform.getSelectedItem().toString();
-            epicNickName = etNickName.getText().toString();
-            Log.d("Change","platform "+mconsole+" epic_name "+epicNickName);
-            forniteViewModel.getData(mconsole, epicNickName);
+            forniteViewModel.getData(spinnerPlatform.getSelectedItem().toString(), etNickName.getText().toString());
         });
+    }
 
+    //Datos de las listas
+    private void resetDataUser(){
+        forniteViewModel = ViewModelProviders.of(this).get(FortniteTrackerViewModel.class);
+        //Observador que escucha del View Model para meter los datos en el recyclerView
+        forniteViewModel.mldataForniteTracker.observe(this, StatsSonData -> {
+            if(StatsSonData!=null){
+                recyclerView = findViewById(R.id.recycleview_fornite);
+                adapter = new MyAdapter(StatsSonData);
+                layoutManager = new GridLayoutManager(this, 2);
+                recyclerView.setLayoutManager(layoutManager);
+                recyclerView.setAdapter(adapter);
+            }
+        });
     }
 }
 

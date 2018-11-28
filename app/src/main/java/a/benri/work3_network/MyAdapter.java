@@ -8,10 +8,11 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import a.benri.work3_network.ForniteTracker.FortniteTrackerViewHolder;
 import a.benri.work3_network.ForniteTracker.StatsSonData;
 import io.reactivex.annotations.NonNull;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ForniteViewHolder>{
+public class MyAdapter extends RecyclerView.Adapter<FortniteTrackerViewHolder>{
     private List<StatsSonData> dataStats;
 
     //Constructor del adapter al que se le pasa la lista de datos desde el main
@@ -20,36 +21,24 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ForniteViewHolder>
     }
 
     @Override
-    public ForniteViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        LayoutInflater layoutInflater = LayoutInflater.from(viewGroup.getContext());
-        View view = layoutInflater.inflate(R.layout.content_cardview, viewGroup, false);
-        return new ForniteViewHolder(view);
+    public FortniteTrackerViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.content_cardview, viewGroup, false);
+        FortniteTrackerViewHolder myfortniteHolder = new FortniteTrackerViewHolder(view);
+        return myfortniteHolder;
     }
 
 
     @Override
-    public void onBindViewHolder(ForniteViewHolder forniteViewHolder, int i) {
+    public void onBindViewHolder(FortniteTrackerViewHolder fortniteTrackerViewHolder, int i) {
         final StatsSonData item = dataStats.get(i);
-        forniteViewHolder.txtForniteTrackerTitle.setText(item.getLabel());
-        forniteViewHolder.txtForniteTrackerValue.setText(item.getDisplayValue());
-        forniteViewHolder.txtForniteTrackerRank.setText(item.getRank());
+        fortniteTrackerViewHolder.setTxtForniteTrackerTitle(item.getLabel());
+        fortniteTrackerViewHolder.setTxtForniteTrackerValue(item.getRank());
+        fortniteTrackerViewHolder.setTxtForniteTrackerRank(item.getDisplayValue());
     }
 
     @Override
     public int getItemCount() {
         return dataStats.size();
-    }
-
-    public class ForniteViewHolder extends RecyclerView.ViewHolder {
-
-        private TextView txtForniteTrackerTitle, txtForniteTrackerValue, txtForniteTrackerRank;
-
-        public ForniteViewHolder(View itemView) {
-            super(itemView);
-            txtForniteTrackerTitle = itemView.findViewById(R.id.tvTitle);
-            txtForniteTrackerValue = itemView.findViewById(R.id.tvValue);
-            txtForniteTrackerRank = itemView.findViewById(R.id.tvRank);
-        }
     }
 }
 

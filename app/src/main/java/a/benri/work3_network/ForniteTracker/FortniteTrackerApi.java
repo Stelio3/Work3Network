@@ -9,19 +9,20 @@ import retrofit2.http.Headers;
 import retrofit2.http.Path;
 
 //Servicio
-public interface ForniteTrackerApi {
+public interface FortniteTrackerApi {
     @Headers("TRN-Api-Key: 1b947de5-1e90-4cd5-902a-d5e9e123d9b2")
-    @GET("v1/profile/{platform}/{epic-nickname}")
-    Observable<ForniteTracker> getInfoFornite(@Path("platform") String platform , @Path("epic-nickname") String epic_nickname);
+    @GET("profile/{platform}/{playerName}")
+    //Metodo observable que recoge la plataforma de juego y el nombre de usuario
+    Observable<FortniteTracker> getFortniteUser(@Path("platform") String platform ,
+                                                @Path("playerName") String epic_nickname);
 
-
-    static ForniteTrackerApi Factory(){
+    static FortniteTrackerApi Factory(){
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(" https://api.fortnitetracker.com/")
+                .baseUrl(" https://api.fortnitetracker.com/v1/")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        return  retrofit.create(ForniteTrackerApi.class);
+        return  retrofit.create(FortniteTrackerApi.class);
     }
 }
