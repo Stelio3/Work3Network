@@ -13,14 +13,12 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class FortniteTrackerViewModel extends ViewModel {
-    private FortniteTrackerRepository fortniteTrackerRepository = FortniteTrackerRepository.getInstance();
     public MutableLiveData<List<StatsSonData>> mldataForniteTracker = new MutableLiveData<>();
     public List<StatsSonData> dataList = new ArrayList<>();
 
-
     public void getData(String platform, String epic_nickname){
 
-        fortniteTrackerRepository.getFortniteUser(platform,epic_nickname)
+        FortniteTrackerRepository.getInstance().getFortniteUser(platform,epic_nickname)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<FortniteTracker>() {
@@ -34,10 +32,10 @@ public class FortniteTrackerViewModel extends ViewModel {
                         if(forniteObject!=null) {
                             dataList.clear();
                             StatsSon data = forniteObject.getStats().getP2();
+                            dataList.add(data.getKills());
+                            dataList.add(data.getMatches());
                             dataList.add(data.getScore());
                             dataList.add(data.getScorePerMatch());
-                            dataList.add(data.getMatches());
-                            dataList.add(data.getKills());
                             mldataForniteTracker.postValue(dataList);
                         }
                     }
